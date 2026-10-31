@@ -1,3 +1,4 @@
+#exercicio 1
 def define_posicoes(linha,coluna,orientacao,tamanho):
     posicoes = []
     i = 0
@@ -14,3 +15,12 @@ def define_posicoes(linha,coluna,orientacao,tamanho):
             posicoes.append([linha_atual,coluna_atual])
             i += 1
     return posicoes
+
+#exercicio 2
+def preenche_frota(frota, navio, linha, coluna, orientacao,tamanho):
+    posicoes = define_posicoes(linha,coluna,orientacao,tamanho)
+    if navio not in frota:
+        frota[navio] = []
+    frota[navio].append(posicoes)
+    return frota
+
