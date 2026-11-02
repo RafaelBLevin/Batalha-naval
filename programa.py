@@ -1,4 +1,4 @@
-from funcoes import define_posicoes, preenche_frota, posicao_valida
+from funcoes import define_posicoes, posiciona_frota, preenche_frota, posicao_valida, faz_jogada, afundados
 def monta_tabuleiros(tabuleiro_jogador, tabuleiro_oponente):
     texto = ''
     texto += '   0  1  2  3  4  5  6  7  8  9         0  1  2  3  4  5  6  7  8  9\n'
@@ -68,3 +68,38 @@ frota_oponente = {
         [[7, 6]]
     ]
 }
+tabuleiro_oponente = posiciona_frota(frota_oponente)
+tabuleiro_jogador = posiciona_frota(frota)
+
+navios = 0 
+for nome in frota_oponente:
+    navios += len(frota_oponente[nome])
+
+posicoes_acertadas = []
+jogando = True
+while jogando:
+    print(monta_tabuleiros(tabuleiro_jogador, tabuleiro_oponente))
+
+    posicao_valida = False
+    while not posicao_valida:
+        linha = int(input("Jogador, digite a linha da jogada: "))
+        if linha >= 0 and linha <= 9:
+            linha_valida = True
+        else:
+            print("Linha inválida!")
+    coluna_valida = False
+    while not coluna_valida:
+        coluna = int(input("Jogador, digite a coluna da jogada: "))
+        if coluna >= 0 and coluna <= 9:
+            coluna_valida = True
+        else:
+            print("Coluna inválida!")
+    if [linha, coluna] in posicoes_acertadas:
+        print(f"A posição {linha} e coluna {coluna} já foi informada anteriormente!")
+    else:
+        posicao_nova = True
+posicoes_acertadas.append([linha, coluna])
+tabuleiro_oponente = faz_jogada(tabuleiro_oponente, linha, coluna)
+if afundados(frota_oponente, tabuleiro_oponente) == navios:
+    print("Parabéns! Você derrubou todos os navios do seu oponente!")
+    jogando = False       
