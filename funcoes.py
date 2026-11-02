@@ -1,4 +1,7 @@
 #exercicio 1
+from sqlalchemy import false
+
+
 def define_posicoes(linha,coluna,orientacao,tamanho):
     posicoes = []
     i = 0
@@ -62,4 +65,16 @@ def afundados(frota, tabuleiro):
             if afundado:
                 afundados += 1
     return afundados
-
+#exercicio 6
+def posicao_valida(frota, linha, coluna, orientacao, tamanho):
+    posicoes = define_posicoes(linha, coluna, orientacao, tamanho)
+    for posicao in poscioes:
+        linha_atual = posicao[0]
+        coluna_atual = posicao[1]
+        if linha_atual < 0 or linha_atual >= 10 or coluna_atual < 0 or coluna_atual >= 10:
+            return False
+        for navio in frota:
+            for lugar in frota[navio]:
+                if posicao in lugar:
+                    return false
+    return True
