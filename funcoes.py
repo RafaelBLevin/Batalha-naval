@@ -76,5 +76,5 @@ def posicao_valida(frota, linha, coluna, orientacao, tamanho):
         for navio in frota:
             for lugar in frota[navio]:
                 if posicao in lugar:
-                    return false
+                    return False
     return True
