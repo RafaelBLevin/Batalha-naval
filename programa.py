@@ -1,4 +1,4 @@
-import funcoes
+from funcoes import define_posicoes, preenche_frota, posicao_valida
 #exercicio 7
 frota = {
     "porta-aviões":[],
