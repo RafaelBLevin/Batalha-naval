@@ -1,7 +1,4 @@
 #exercicio 1
-from sqlalchemy import false
-
-
 def define_posicoes(linha,coluna,orientacao,tamanho):
     posicoes = []
     i = 0
