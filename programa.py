@@ -79,25 +79,26 @@ posicoes_acertadas = []
 jogando = True
 while jogando:
     print(monta_tabuleiros(tabuleiro_jogador, tabuleiro_oponente))
-
-    posicao_valida = False
-    while not posicao_valida:
-        linha = int(input("Jogador, digite a linha da jogada: "))
-        if linha >= 0 and linha <= 9:
-            linha_valida = True
+    posicao_nova = False
+    while not posicao_nova:   
+        linha_valida = False
+        while not linha_valida:
+            linha = int(input("Jogador, digite a linha da jogada: "))
+            if linha >= 0 and linha <= 9:
+                linha_valida = True
+            else:
+                print("Linha inválida!")
+        coluna_valida = False
+        while not coluna_valida:
+            coluna = int(input("Jogador, digite a coluna da jogada: "))
+            if coluna >= 0 and coluna <= 9:
+                coluna_valida = True
+            else:
+                print("Coluna inválida!")
+        if [linha, coluna] in posicoes_acertadas:
+            print(f"A posição {linha} e coluna {coluna} já foi informada anteriormente!")
         else:
-            print("Linha inválida!")
-    coluna_valida = False
-    while not coluna_valida:
-        coluna = int(input("Jogador, digite a coluna da jogada: "))
-        if coluna >= 0 and coluna <= 9:
-            coluna_valida = True
-        else:
-            print("Coluna inválida!")
-    if [linha, coluna] in posicoes_acertadas:
-        print(f"A posição {linha} e coluna {coluna} já foi informada anteriormente!")
-    else:
-        posicao_nova = True
+            posicao_nova = True
 posicoes_acertadas.append([linha, coluna])
 tabuleiro_oponente = faz_jogada(tabuleiro_oponente, linha, coluna)
 if afundados(frota_oponente, tabuleiro_oponente) == navios:
