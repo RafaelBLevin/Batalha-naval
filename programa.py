@@ -121,7 +121,7 @@ while jogando:
             if [linha_oponente, coluna_oponente] not in posicoes_oponente:
                 sorteio = True
         posicoes_oponente.append([linha_oponente, coluna_oponente])
-        print(f"Seu oponente está atacando a posição linha {linha_oponente} e coluna {coluna_oponente}")
+        print(f"Seu oponente está atacando na linha {linha_oponente} e coluna {coluna_oponente}")
         tabuleiro_jogador = faz_jogada(tabuleiro_jogador, linha_oponente, coluna_oponente)
         if afundados(frota, tabuleiro_jogador) == navios_jogador:
             print("Xi! O oponente derrubou toda a sua frota =(")
