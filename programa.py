@@ -32,6 +32,7 @@ for nome in frota:
                 else:
                     orientacao = "horizontal"
             if posicao_valida(frota, linha, coluna, orientacao, tamanho):
+                frota = preenche_frota(frota, nome, linha, coluna, orientacao, tamanho)
                 valida = True
             else:
                 print("Esta posição não está válida!")
