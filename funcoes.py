@@ -68,7 +68,7 @@ def afundados(frota, tabuleiro):
 #exercicio 6
 def posicao_valida(frota, linha, coluna, orientacao, tamanho):
     posicoes = define_posicoes(linha, coluna, orientacao, tamanho)
-    for posicao in poscioes:
+    for posicao in posicoes:
         linha_atual = posicao[0]
         coluna_atual = posicao[1]
         if linha_atual < 0 or linha_atual >= 10 or coluna_atual < 0 or coluna_atual >= 10:
