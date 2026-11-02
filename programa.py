@@ -18,9 +18,9 @@ for nome in frota:
     quantidade = regras[nome][1]
     contador = 0
     while contador < quantidade:
-        print(f"Insira as informações referentes ao navio {nome} que possui tamanho {tamanho}")
         valida = False
         while not valida:
+            print(f"Insira as informações referentes ao navio {nome} que possui tamanho {tamanho}")
             linha = int(input("Linha: "))
             coluna = int(input("Coluna: "))
             if nome == "submarino":
