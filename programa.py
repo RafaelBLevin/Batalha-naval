@@ -1,4 +1,6 @@
 from funcoes import define_posicoes, posiciona_frota, preenche_frota, posicao_valida, faz_jogada, afundados
+import random
+random.seed(1)
 def monta_tabuleiros(tabuleiro_jogador, tabuleiro_oponente):
     texto = ''
     texto += '   0  1  2  3  4  5  6  7  8  9         0  1  2  3  4  5  6  7  8  9\n'
@@ -76,6 +78,13 @@ for nome in frota_oponente:
     navios += len(frota_oponente[nome])
 
 posicoes_acertadas = []
+
+navios_jogador = 0
+for nome in frota:
+    navios_jogador += len(frota[nome])
+
+posicoes_oponente = []
+
 jogando = True
 while jogando:
     print(monta_tabuleiros(tabuleiro_jogador, tabuleiro_oponente))
@@ -96,11 +105,26 @@ while jogando:
             else:
                 print("Coluna inválida!")
         if [linha, coluna] in posicoes_acertadas:
-            print(f"A posição {linha} e coluna {coluna} já foi informada anteriormente!")
+            print(f"A posição linha {linha} e coluna {coluna} já foi informada anteriormente!")
         else:
             posicao_nova = True
-posicoes_acertadas.append([linha, coluna])
-tabuleiro_oponente = faz_jogada(tabuleiro_oponente, linha, coluna)
-if afundados(frota_oponente, tabuleiro_oponente) == navios:
-    print("Parabéns! Você derrubou todos os navios do seu oponente!")
-    jogando = False       
+    posicoes_acertadas.append([linha, coluna])
+    tabuleiro_oponente = faz_jogada(tabuleiro_oponente, linha, coluna)
+    if afundados(frota_oponente, tabuleiro_oponente) == navios:
+        print("Parabéns! Você derrubou todos os navios do seu oponente!")
+        jogando = False
+    else:
+        sorteio = False
+        while not sorteio:
+            linha_oponente = random.randint(0, 9)
+            coluna_oponente = random.randint(0, 9)
+            if [linha_oponente, coluna_oponente] not in posicoes_oponente:
+                sorteio = True
+        posicoes_oponente.append([linha_oponente, coluna_oponente])
+        print(f"Seu oponente está atacando a posição linha {linha_oponente} e coluna {coluna_oponente}")
+        tabuleiro_jogador = faz_jogada(tabuleiro_jogador, linha_oponente, coluna_oponente)
+        if afundados(frota, tabuleiro_jogador) == navios_jogador:
+            print("Xi! O oponente derrubou toda a sua frota =(")
+            jogando = False
+        
+           
